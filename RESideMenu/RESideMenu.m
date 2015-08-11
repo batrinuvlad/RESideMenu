@@ -105,6 +105,7 @@
     _panGestureEnabled = YES;
     _panFromEdge = YES;
     _panMinimumOpenThreshold = 60.0;
+    _panGestureStartingPoint = 20.0;
     
     _contentViewShadowEnabled = NO;
     _contentViewShadowColor = [UIColor blackColor];
@@ -537,7 +538,7 @@
   
     if (self.panFromEdge && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && !self.visible) {
         CGPoint point = [touch locationInView:gestureRecognizer.view];
-        if (point.x < 20.0 || point.x > self.view.frame.size.width - 20.0) {
+        if (point.x < self.panGestureStartingPoint || point.x > self.view.frame.size.width - 20.0) {
             return YES;
         } else {
             return NO;
